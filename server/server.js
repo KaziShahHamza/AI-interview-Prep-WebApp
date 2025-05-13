@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import connectDB from "./config/db.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(
   })
 );
 
+connectDB();
 
 app.use(express.json());
 
