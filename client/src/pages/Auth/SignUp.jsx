@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
+import { validateEmail } from "../../Utils/helper";
 
 const SignUp = ({ setCurrentPage }) => {
   const [profilePic, setProfilePic] = useState(null);
@@ -15,6 +16,35 @@ const SignUp = ({ setCurrentPage }) => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    let profileImageUrl = "";
+
+    if (!fullName) {
+      setError("Please Enter Your Full Name");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError("Please Enter a Valid Email Address");
+      return;
+    }
+
+    if (!password) {
+      setError("Please Enter The Password");
+      return;
+    }
+
+    setError("");
+
+    try {
+
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went Wrong");
+      }
+    }
   };
 
   return (

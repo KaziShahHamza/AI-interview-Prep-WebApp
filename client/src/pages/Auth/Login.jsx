@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
-import { validateEmail } from "../../Utils/healper";
+import { validateEmail } from "../../Utils/helper";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
@@ -12,29 +12,28 @@ const Login = ({ setCurrentPage }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  };
 
-  // if (!validateEmail(email)) {
-  //   setError("Please Enter a Valid Email Address");
-  //   return;
-  // }
-
-  // if (!password) {
-  //   setError("Please Enter The Password");
-  //   return;
-  // }
-
-  // setError("");
-
-  try {
-
-  } catch (error) {
-    if (error.response && error.response.data.message) {
-      setError(error.response.data.message);
-    } else {
-      setError("Something went Wrong");
+    if (!validateEmail(email)) {
+      setError("Please Enter a Valid Email Address");
+      return;
     }
-  }
+
+    if (!password) {
+      setError("Please Enter The Password");
+      return;
+    }
+
+    setError("");
+
+    try {
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went Wrong");
+      }
+    }
+  };
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center ">
@@ -60,7 +59,7 @@ const Login = ({ setCurrentPage }) => {
           type="password"
         />
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         <button type="submit" className="btn-primary">
           LOGIN
         </button>
