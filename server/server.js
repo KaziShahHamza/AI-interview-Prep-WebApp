@@ -10,6 +10,7 @@ import authRoutes from "./routes/authRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 import questionRoutes from "./routes/questionRoutes.js";
 import { protect } from "./middlewares/authMiddleware.js";
+import { generateExplanation, generateQuestions } from "./controllers/aiController.js";
 
 dotenv.config();
 
