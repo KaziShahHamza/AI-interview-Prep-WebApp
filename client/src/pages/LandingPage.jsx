@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import HERO_IMG from "./../assets/hero-img.png";
 import { APP_FEATURES } from "../utils/data";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +6,23 @@ import { LuSparkles } from "react-icons/lu";
 import SignUp from "./Auth/SignUp";
 import Login from "./Auth/Login";
 import Modal from "./Modal";
+import { UserContext } from "../Context/userContext";
+import ProfileInfoCard from "../components/Cards/ProfileInfoCard";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
-  const handleCTA = () => {};
+  const handleCTA = () => {
+    if (!user) {
+      setOpenAuthModal(true);
+    } else {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <>
@@ -22,12 +31,16 @@ const LandingPage = () => {
         <div className="container relative z-10 px-4 pt-6 mx-auto">
           <header className="flex items-center justify-between mb-16">
             <div className="text-xl font-bold text-black">InterviewPrep AI</div>
-            <button
-              className="bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
-              onClick={() => setOpenAuthModal(true)}
-            >
-              Login / SignUp
-            </button>
+            {user ? (
+              <ProfileInfoCard />
+            ) : (
+              <button
+                className="bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
+                onClick={() => setOpenAuthModal(true)}
+              >
+                Login / SignUp
+              </button>
+            )}
           </header>
         </div>
 
@@ -130,7 +143,7 @@ const LandingPage = () => {
         <div>
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
           {currentPage === "signup" && (
-            <SignUp setCurrentPage={setCurrentPage} /> 
+            <SignUp setCurrentPage={setCurrentPage} />
           )}
         </div>
       </Modal>
