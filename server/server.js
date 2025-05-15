@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import sessionRoutes from "./routes/sessionRoutes.js";
+import questionRoutes from "./routes/questionRoutes.js";
+import { protect } from "./middlewares/authMiddleware.js";
 
 dotenv.config();
 
@@ -24,14 +27,15 @@ app.use(
 connectDB();
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // Routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/session", sessionRoutes);
-// app.use("/api/question", questionRoutes);
+app.use("/api/sessions", sessionRoutes);
+app.use("/api/questions", questionRoutes);
 
-// app.use("/api/generate-questions", protect, generateQuestions);
-// app.use("/api/generate-explanation", protect, generateExplanation);
+app.use("/api/generate-questions", protect, generateQuestions);
+app.use("/api/generate-explanation", protect, generateExplanation);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use("/upload", express.static(path.join(__dirname, "uploads"), {}));

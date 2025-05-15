@@ -3,12 +3,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // Generates a JSON Web Token for a user.
-const generateToken = (userId) => {
+export const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
 // POST, /api/auth/register, Register User
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const { name, email, password, profileImageUrl } = req.body;
 
@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
 };
 
 // POST, /api/auth/login, Login User
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -66,8 +66,8 @@ const loginUser = async (req, res) => {
   }
 };
 
-// GET, /api/auth/profile, (privete), Get User Profile
-const getUserProfile = async (req, res) => {
+// GET, /api/auth/profile, (private), Get User Profile
+export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) {
@@ -81,4 +81,3 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getUserProfile };

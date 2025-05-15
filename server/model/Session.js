@@ -7,7 +7,7 @@ const sessionSchema = new mongoose.Schema(
     experience: { type: String, requiired: true },
     topicsToFocus: { type: String, requiired: true },
     description: String,
-    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Questions" }],
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
   },
   {
     timestamps: true,
