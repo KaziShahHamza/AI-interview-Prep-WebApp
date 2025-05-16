@@ -46,11 +46,14 @@ export const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
+      console.log("User doesn't exist");
+      console.log("User doesn't exist");
       res.status(500).json({ message: "User doesn't exists." });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      // console.log("Password no match")
       res.status(500).json({ message: "Password doesn't match." });
     }
 
@@ -62,6 +65,7 @@ export const loginUser = async (req, res) => {
       token: generateToken(user._id),
     });
   } catch (error) {
+    // console.log("LoginUser Catched Error")
     res.status(500).json({ message: "LoginUser Catched Error." });
   }
 };
@@ -80,4 +84,3 @@ export const getUserProfile = async (req, res) => {
       .json({ message: "Error while getting user", error: error.message });
   }
 };
-

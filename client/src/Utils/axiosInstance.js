@@ -13,9 +13,12 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const accesToken = localStorage.getItem("token");
+    // console.log("console accessToken: ", accesToken);
     if (accesToken) {
       config.headers.Authorization = `Bearer ${accesToken}`;
     }
+    // console.log("cosole config headers: ", config.headers.Authorization);
+    // console.log(config);
     return config;
   },
   (error) => {
@@ -25,6 +28,7 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    // console.log("console response: ", response);
     return response;
   },
   (error) => {
@@ -39,6 +43,5 @@ axiosInstance.interceptors.response.use(
     }
   }
 );
-
 
 export default axiosInstance;

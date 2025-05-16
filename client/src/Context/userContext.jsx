@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
 import axiosInstance from "../Utils/axiosInstance";
+import { createContext, useState, useEffect } from "react";
 import { API_PATHS } from "../Utils/apiPaths";
 
 export const UserContext = createContext();
@@ -21,6 +21,7 @@ const UserProvider = ({ children }) => {
       try {
         const response = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
         setUser(response.data);
+        console.log("user from fetchUser: ", user);
       } catch (error) {
         console.error("User not authorized", error);
         clearUser();
@@ -30,10 +31,11 @@ const UserProvider = ({ children }) => {
     };
 
     fetchUser();
-  }, []);
+  }, []);           
 
   const updateUser = (userData) => {
     setUser(userData);
+    console.log("user from updateUser: ", user)
     localStorage.setItem("token", userData.token);
     setLoading(false);
   };
@@ -44,7 +46,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={(user, loading, updateUser, clearUser)}>
+    <UserContext.Provider value={{user, loading, updateUser, clearUser}}>
       {children}
     </UserContext.Provider>
   );

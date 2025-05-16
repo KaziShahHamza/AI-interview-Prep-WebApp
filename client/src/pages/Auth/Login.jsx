@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import { validateEmail } from "../../Utils/helper";
@@ -11,7 +11,7 @@ const Login = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { updateUser } = createContext(UserContext);
+  const { updateUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -40,12 +40,14 @@ const Login = ({ setCurrentPage }) => {
 
       if (token) {
         localStorage.setItem("token", token);
+        updateUser(response.data);
         navigate("/dashboard");
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
       } else {
+        // console.log("error from login func")
         setError("Something went Wrong");
       }
     }

@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
-import HERO_IMG from "./../assets/hero-img.png";
-import { APP_FEATURES } from "../utils/data";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LuSparkles } from "react-icons/lu";
+import HERO_IMG from "./../assets/hero-img.png";
+import Modal from "./Modal";
+import { APP_FEATURES } from "../utils/data";
 import SignUp from "./Auth/SignUp";
 import Login from "./Auth/Login";
-import Modal from "./Modal";
 import { UserContext } from "../Context/userContext";
 import ProfileInfoCard from "../components/Cards/ProfileInfoCard";
 
