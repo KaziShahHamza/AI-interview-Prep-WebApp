@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { UserContext } from "../../Context/userContext";
 
 const InterviewPrep = () => {
-  return (
-    <div>InterviewPrep</div>
-  )
-}
+  const { user } = useContext(UserContext);
+  console.log(user);
 
-export default InterviewPrep
+  return (
+    <>
+      <div>InterviewPrep</div>
+      {user ? "User Yes" : "User No"}
+    </>
+  );
+};
+
+export default InterviewPrep;

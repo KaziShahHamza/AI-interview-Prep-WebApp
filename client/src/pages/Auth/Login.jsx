@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import { validateEmail } from "../../Utils/helper";
@@ -47,7 +47,6 @@ const Login = ({ setCurrentPage }) => {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
       } else {
-        // console.log("error from login func")
         setError("Something went Wrong");
       }
     }
