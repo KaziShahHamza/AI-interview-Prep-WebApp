@@ -6,10 +6,10 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import connectDB from "./config/db.js";
+import { protect } from "./middlewares/authMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 import questionRoutes from "./routes/questionRoutes.js";
-import { protect } from "./middlewares/authMiddleware.js";
 import { generateExplanation, generateQuestions } from "./controllers/aiController.js";
 
 dotenv.config();

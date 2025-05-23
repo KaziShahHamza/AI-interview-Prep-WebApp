@@ -17,6 +17,8 @@ export const generateQuestions = async (req, res) => {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
+    console.log("entered generateQues");
+
     const prompt = questionAnswerPrompt(
       role,
       experience,
@@ -37,7 +39,8 @@ export const generateQuestions = async (req, res) => {
       .trim();
 
     const data = JSON.parse(cleanedText);
-    console.log(data);
+    // console.log(data);
+    console.log("response is about to send")
 
     res.status(200).json(data);
   } catch (error) {
@@ -74,11 +77,9 @@ export const generateExplanation = async (req, res) => {
 
     res.status(200).json(data);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Failed to generate explanation",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Failed to generate explanation",
+      error: error.message,
+    });
   }
 };

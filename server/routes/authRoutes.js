@@ -9,10 +9,14 @@ import { upload } from "../middlewares/uploadMiddleware.js";
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+// /api/auth/profile
 router.get("/profile", protect, getUserProfile);
+// /api/auth/register
+router.post("/register", registerUser);
+// /api/auth/login
+router.post("/login", loginUser);
 
+// /api/auth/upload-image
 router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: "No image uploaded." });
