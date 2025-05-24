@@ -43,13 +43,13 @@ const RoleInfoHeader = ({
           </div>
 
           <div className="flex items-center gap-3 mt-4">
-            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1">
+            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1 text-nowrap">
               Experience: {experience} {experience == 1 ? "Year" : "Years"}
             </div>
-            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1">
+            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1 text-nowrap">
               {quesLength} Q&A
             </div>
-            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1">
+            <div className="text-[13px] font-semibold text-white bg-black rounded-full px-3 py-1 text-nowrap">
               Last Updated: {lastUpdated}
             </div>
           </div>

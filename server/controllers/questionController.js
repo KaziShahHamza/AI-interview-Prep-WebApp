@@ -4,6 +4,7 @@ import Session from "../model/Session.js";
 // POST api/questions/add
 export const addQuestionsToSession = async (req, res) => {
   try {
+    console.log("Entered Add Quesitons")
     const { sessionId, questions } = req.body;
 
     if (!sessionId || !questions || !Array.isArray(questions)) {
