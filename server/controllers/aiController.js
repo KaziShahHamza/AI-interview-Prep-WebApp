@@ -39,8 +39,6 @@ export const generateQuestions = async (req, res) => {
       .trim();
 
     const data = JSON.parse(cleanedText);
-    // console.log(data);
-    console.log("response is about to send")
 
     res.status(200).json(data);
   } catch (error) {

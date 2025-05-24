@@ -28,6 +28,8 @@ export const getSessionById = async (req, res) => {
       return res.status(404).json({ message: "Session not found" });
     }
 
+    // console.log("response sent from get session by id");
+
     res.status(200).json(session);
   } catch (error) {
     res.status(500).json({ message: "Server Error" });

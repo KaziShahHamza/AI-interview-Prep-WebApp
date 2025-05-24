@@ -39,7 +39,6 @@ const CreateSessionForm = () => {
     setIsLoading(true);
 
     try {
-      console.log("entered trycatch");
       const aiResponse = await axiosInstance.post(
         API_PATHS.AI.GENERATE_QUESTIONS,
         {
@@ -50,7 +49,7 @@ const CreateSessionForm = () => {
         }
       );
 
-      console.log("after aiResponse: ", aiResponse);
+    //   console.log("after aiResponse: ", aiResponse);
 
       const generatedQuestions = aiResponse.data;
 
