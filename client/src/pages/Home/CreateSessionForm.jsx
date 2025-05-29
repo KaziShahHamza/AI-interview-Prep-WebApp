@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
-import axiosInstance from "../../utils/axiosInstance";
-import { API_PATHS } from "../../utils/apiPaths";
+import axiosInstance from "../../utilities/axiosInstance";
+import { API_PATHS } from "../../utilities/apiPaths";
 
 const CreateSessionForm = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +49,7 @@ const CreateSessionForm = () => {
         }
       );
 
-    //   console.log("after aiResponse: ", aiResponse);
+      //   console.log("after aiResponse: ", aiResponse);
 
       const generatedQuestions = aiResponse.data;
 

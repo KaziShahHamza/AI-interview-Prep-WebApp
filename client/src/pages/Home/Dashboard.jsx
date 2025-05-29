@@ -1,11 +1,11 @@
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import { LuPlus } from "react-icons/lu";
-import { CARD_BG } from "../../utils/data";
+import { CARD_BG } from "../../utilities/data";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../utils/axiosInstance";
-import { API_PATHS } from "../../utils/apiPaths";
+import axiosInstance from "../../utilities/axiosInstance";
+import { API_PATHS } from "../../utilities/apiPaths";
 import moment from "moment";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import CreateSessionForm from "./CreateSessionForm";

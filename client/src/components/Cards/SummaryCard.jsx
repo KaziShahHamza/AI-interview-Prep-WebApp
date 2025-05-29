@@ -1,6 +1,6 @@
 import React from "react";
 import { LuTrash2 } from "react-icons/lu";
-import { getInitials } from "../../utils/helper";
+import { getInitials } from "../../utilities/helper";
 
 const SummaryCard = ({
   colors,
