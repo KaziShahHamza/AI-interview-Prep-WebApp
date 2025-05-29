@@ -31,10 +31,13 @@ const Login = ({ setCurrentPage }) => {
     setError("");
 
     try {
+      console.log("entered trying to login");
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
         password,
       });
+
+      console.log("got response: ", response);
 
       const { token } = response.data;
 

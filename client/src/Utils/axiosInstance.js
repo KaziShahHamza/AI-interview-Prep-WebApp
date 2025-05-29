@@ -1,5 +1,7 @@
 import axios from "axios";
-import { BASE_URL } from "./apiPaths";
+// import { BASE_URL } from "./apiPaths";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -14,6 +16,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const accesToken = localStorage.getItem("token");
     // console.log("console accessToken: ", accesToken);
+    console.log("baseUrl: ", BASE_URL);
     if (accesToken) {
       config.headers.Authorization = `Bearer ${accesToken}`;
     }
@@ -29,6 +32,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     // console.log("console response: ", response);
+    console.log("responded successfully from axiosInstance");
     return response;
   },
   (error) => {
